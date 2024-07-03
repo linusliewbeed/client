@@ -1,0 +1,58 @@
+<div class="xs:m-4 md:gap-2 xs:gap-2 m-2 mt-4  md:flex ">
+  <div class="bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 h-full">
+    <div class="flex flex-col items-center">
+      <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="assets/images/ali.jpg" alt="Bonnie image" />
+      <h5 class="mb-1 text-xl font-medium">Aliakbar Esmaeili</h5>
+      <span class="text-sm text-gray-500 dark:text-gray-400 pb-2">Visual Designer</span>
+      <mat-divider class="w-72"></mat-divider>
+      <div class="p-5">
+        <a (click)="temp = 'setting'"
+          class="hover:text-sky-600 w-80 dark:hover:bg-slate-300 cursor-pointer flex items-center rounded-md gap-2 p-2">
+          <span class="material-symbols-outlined"> person </span>
+          Account Setting
+        </a>
+        <a (click)="temp = 'changepassword'"
+          class="hover:text-sky-600 dark:hover:bg-slate-300 cursor-pointer flex items-center rounded-md gap-2 p-2">
+          <span class="material-symbols-outlined"> password </span>
+          Change Password
+        </a>
+        <a (click)="temp = 'connections'"
+          class="hover:text-sky-600 dark:hover:bg-slate-300 cursor-pointer flex items-center rounded-md gap-2 p-2">
+          <span class="material-symbols-outlined"> link </span>
+          Connections
+        </a>
+        <a (click)="temp = 'privacyPolicy'"
+          class="hover:text-sky-600 dark:hover:bg-slate-300 cursor-pointer flex items-center rounded-md gap-2 p-2">
+          <span class="material-symbols-outlined"> person </span> Privacy Policy
+        </a>
+        <a (click)="temp = 'termsConditions'"
+          class="hover:text-sky-600 dark:hover:bg-slate-300 cursor-pointer flex items-center rounded-md gap-2 p-2">
+          <span class="material-symbols-outlined"> info </span>
+          Terms & Conditions
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="w-full">
+    <div [ngSwitch]="temp" class="text-blue-700">
+      <ng-template [ngSwitchCase]="'setting'">
+        <app-settings />
+      </ng-template>
+      <ng-template [ngSwitchCase]="'changepassword'">
+        <app-change-password />
+      </ng-template>
+      <ng-template [ngSwitchCase]="'connections'">
+        <app-connections />
+      </ng-template>
+      <ng-template [ngSwitchCase]="'privacyPolicy'">
+        <app-privacy-policy />
+      </ng-template>
+      <ng-template [ngSwitchCase]="'termsConditions'">
+        <app-terms-conditions />
+      </ng-template>
+      <ng-template ngSwitchDefault>
+        <app-settings />
+      </ng-template>
+    </div>
+  </div>
+</div>

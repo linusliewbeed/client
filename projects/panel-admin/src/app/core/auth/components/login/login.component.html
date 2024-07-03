@@ -1,0 +1,61 @@
+<div class="min-h-screen flex items-center justify-center">
+  <div
+    class="py-12 px-4 sm:px-6 lg:px-8 max-w-md shadow-lg bg-white rounded-lg">
+    <div class="max-w-md">
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Create your account
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        <a (click)="navigateRegister()" class="font-medium text-indigo-600 hover:text-indigo-500 cursor-pointer">
+          Sign up
+        </a>
+      </p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="login()" class="container">
+      <mat-form-field
+        data-testing="username"
+        appearance="outline"
+        class="w-full">
+        <mat-label>{{ labelUserName }}</mat-label>
+        <input
+          type="userName"
+          matInput
+          [errorStateMatcher]="matcher"
+          formControlName="email"
+          placeholder="UserName" />
+        @if (userName?.hasError('userName') && !userName?.hasError('required'))
+        {
+        <mat-error>Please enter a valid userName address</mat-error>
+        } @if (userName?.hasError('required')) {
+        <mat-error>UserName is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>{{ labelPassword }}</mat-label>
+        <input
+          type="Password"
+          matInput
+          [errorStateMatcher]="matcher"
+          formControlName="password"
+          placeholder="Password" />
+        @if (password?.hasError('password') && !password?.hasError('required'))
+        {
+        <mat-error>Please enter a valid password address</mat-error>
+        } @if (password?.hasError('required')) {
+        <mat-error>password is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <button
+        class="rounded-full w-full"
+        data-testid="login-button"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!form.valid">
+        Sign in
+      </button>
+     
+    </form>
+  </div>
+</div>

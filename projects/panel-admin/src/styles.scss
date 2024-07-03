@@ -1,0 +1,271 @@
+/* You can add global styles to this file, and also import other style files */
+// @import "@angular/material/prebuilt-themes/indigo-pink.css";
+@use "@angular/material" as mat;
+@use "../../../m3-theme.scss";
+@use "../../panel-admin/src/app/core/layouts/layout-component.theme";
+
+@include mat.core();
+
+$angular-material-3-light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+$angular-material-3-dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$magenta-palette,
+      tertiary: mat.$violet-palette,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+// Light theme
+// Un comment below to use theme created by ng add @angular-material
+// $theme: $angular-material-3-light-theme;
+
+// Light Theme created by ng generate @angular-material:m3-theme
+$theme: m3-theme.$light-theme;
+
+// Dark theme
+// Un-comment below to use dark theme using @angular/material
+// $dark-theme: $angular-material-3-dark-theme;
+
+// Dark Theme created by ng generate @angular-material:m3-theme
+$dark-theme: m3-theme.$dark-theme;
+
+:root {
+  @include mat.all-component-themes($theme);
+
+  // Components themes
+  @include layout-component.theme($theme);
+
+  // Add backwards compatibility styles for color variants
+  @include mat.color-variants-backwards-compatibility($theme);
+
+  @media (prefers-color-scheme: dark) {
+    @include mat.all-component-colors($dark-theme);
+
+    // Components themes
+    @include layout-component.theme($dark-theme);
+
+    @include mat.color-variants-backwards-compatibility($dark-theme);
+  }
+}
+
+
+body ,html{
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+// :root {
+//   @include mat.all-component-themes($angular-material-3-theme);
+// }
+
+@import '@angular/cdk/overlay-prebuilt.css';
+// regular style toast
+@import 'ngx-toastr/toastr';
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+// Style to fix the weird border with angular material
+.mdc-notched-outline__notch {
+  border-right: none !important;
+  border-left: none !important;
+}
+body, html {
+ 
+  margin: 0; /* Ensure there is no margin */
+  padding: 0; /* Ensure there is no padding */
+  font-family: 'CustomFont', sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/roboto/Roboto-Medium.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./assets/fonts/Roboto/Roboto-Light.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+// ScrollBar
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #e7e7e7;
+  border: 1px solid #cacaca;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #363636;
+}
+
+.mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 28px !important;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+:root {
+  --color-primary: #004859;
+  --color-accent: #ff8888;
+  --color-accent-secondary: #ffc15a;
+  --color-accent-secondary-darker: #faa415;
+  --color-success: #4caf50;
+  --color-error: #ff5722;
+  --color-info: #449eff;
+  --color-background: #eceff1;
+  --color-text: #263238;
+  --color-text-light: #607d8b;
+  --height-header: 64px;
+  --height-footer: 48px;
+  --border-radius: 10px;
+  --spacing-step: 8px;
+  --font-size-h1: 34px;
+}
+
+
+
+button{
+  border-radius: 25px!important;
+}
+
+
+// forms
+// form {
+//   padding: calc(var(--spacing-step) * 3);
+//   box-sizing: border-box;
+//   border-radius: var(--border-radius);
+//   background: var(--color-background);
+//   min-width: 395px;
+//   width: 100%;
+//   max-width: 450px;
+// }
+
+// label, input:not([type="checkbox"]), fieldset, button {
+//   width: 100%;
+//   box-sizing: border-box;
+// }
+
+// input[type="checkbox"] {
+//   width: 16px;
+//   height: 16px;
+//   margin-right: var(--spacing-step);
+// }
+
+// fieldset {
+//   border-radius: var(--border-radius);
+//   border: 1px solid var(--color-text-light);
+//   margin-top: var(--spacing-step);
+// }
+
+// button {
+//   margin-top: calc(var(--spacing-step) * 2);
+//   background-color: var(--color-accent-secondary);
+//   border: var(--color-accent-secondary-darker) 1px solid;
+//   color: var(--color-text);
+//   font-weight: bold;
+//   cursor: pointer;
+//   &:hover {
+//     opacity: 0.8;
+//   }
+//   &:active {
+//     background-color: var(--color-accent-secondary-darker);
+//     border: var(--color-accent-secondary) 1px solid;
+//   }
+//   &.reset-button {
+//     background-color: transparent;
+//     border: var(--color-primary) 1px solid;
+//   }
+// }
+
+// input, select {
+//   border: var(--color-text) solid 2px;
+// }
+
+// legend {
+//   font-weight: bold;
+// }
+
+// input, button, select {
+//   border-radius: 5px;
+//   font-size: 18px;
+//   padding: 10px 11px;
+// }
+
+// select {
+//   width: 100%;
+// }
+
+// .review-textarea {
+//   border-radius: var(--border-radius);
+//   background-color: white;
+//   padding: calc(var(--spacing-step) * 2);
+//   margin-top: var(--spacing-step);
+//   min-height: 74px;
+//   box-sizing: border-box;
+
+//   h4 {
+//     margin-bottom: var(--spacing-step);
+
+//     &:empty:before {
+//       content: attr(data-placeholder);
+//       opacity: 0.6;
+//     }
+//   }
+
+//   p,
+//   div {
+//     &:empty:before {
+//       content: attr(data-placeholder);
+//       opacity: 0.6;
+//     }
+//   }
+// }

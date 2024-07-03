@@ -1,0 +1,93 @@
+
+
+
+<!-- <app-header (onToggleMenu)="toggleMenu()" />
+<mat-sidenav-container autosize class="h-screen ">
+  <mat-sidenav class="side-nav" [ngClass]="isCollapsed ? 'collapsed' : 'expanded'" [mode]="isMobile ? 'over' : 'side'"
+    [opened]="!isMobile">
+    <mat-nav-list>
+      <div *ngFor="let menuName of getMenuNames(); trackBy: trackByFn" class="menu_content">
+        @for (item of groupedData[menuName]; track trackByFn) {
+        <div class="menu_items">
+          <span *ngIf="isCollapsed" class="material-symbols-outlined">
+            {{ getMenuIcon(menuName) }}
+          </span>
+          <span *ngIf="!isCollapsed" class="material-symbols-outlined">
+            {{ getMenuIcon(menuName) }}
+          </span>
+          <span (click)="toggleMenuItem(menuName)">
+            {{ !isCollapsed ? menuName : '' }}
+          </span>
+          <span class="material-symbols-outlined" *ngIf="!isCollapsed && item.submenus.length">
+            {{ isMenuItemExpanded(menuName) ? 'expand_less' : 'expand_more' }}
+          </span>
+        </div>
+        <ul *ngIf="isMenuItemExpanded(menuName)">
+          <li>
+            @if (item.submenus) { @for (s of item['submenus']; track $index) {
+            <a mat-list-item [routerLink]="s.url">
+              <span class="material-symbols-outlined">{{ s.icon }}</span>
+              <span>
+                {{ s.submenu_name }}
+              </span>
+            </a>
+            } }
+          </li>
+        </ul>
+
+        }
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="bg-slate-200 ">
+    <router-outlet></router-outlet>
+  
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      @for (item of rootRoutes; track $index) {
+      <a
+        mat-list-item
+        class="text-white"
+        [routerLink]="item.path"
+        #link="routerLinkActive"
+        routerLinkActive
+        [activated]="link.isActive"
+      >
+        {{ item.title }}
+      </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset$ | async) {
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      }
+    </mat-toolbar>
+    <div class="sidenav-scroll-wrapper">
+      <div class="sidenav-content">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

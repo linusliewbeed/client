@@ -18,7 +18,7 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./core/core.module').then(c => c.CoreModule),
+    loadChildren: () => import('./core/core.module').then(c => c.CoreModule)
   },
   {
     path: 'aliakbar',

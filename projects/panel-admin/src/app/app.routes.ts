@@ -10,7 +10,7 @@ export const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    title:'ali'
+    title:'aliakbarnow'
   },
   {
     path: 'not-found',
